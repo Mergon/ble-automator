@@ -54,17 +54,17 @@ if __name__ == '__main__':
 		sys.exit(1)
 	address_ind = 0
     
-    if (len(addresses) == 1):
-        cycle = 0
-        ble.connect(addresses[0])
-    else:
-        cycle = 1
+	if (len(addresses) == 1):
+        	cycle = 0
+        	ble.connect(addresses[0])
+	else:
+		cycle = 1
 	
 	# Endless loop:
 	while (True):
 		# Connect to peer device.
-        if (cycle == 1):
-            ble.connect(addresses[address_ind])
+		if (cycle == 1):
+			ble.connect(addresses[address_ind])
 		
 		# Make the crownstone sample the current, give it some time to sample
 		ble.writeCharacteristic(CHAR_SAMPLE_POWER, [3])
@@ -198,11 +198,11 @@ if __name__ == '__main__':
 			f.write('\n')
 			f.close()
 		
-        if (cycle == 1):
-            # wait a second to be able to receive the disconnect event from peer device.
-            time.sleep(1)
-            
-            # Disconnect from peer device if not done already and clean up.
-            ble.disconnect()
-            address_ind = (address_ind+1) % len(addresses)
+		if (cycle == 1):
+			# wait a second to be able to receive the disconnect event from peer device.
+			time.sleep(1)
+			
+			# Disconnect from peer device if not done already and clean up.
+			ble.disconnect()
+			address_ind = (address_ind+1) % len(addresses)
 
