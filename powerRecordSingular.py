@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-__author__ = 'Merijn van Tooren'
+__author__ = 'Bart van Vliet'
 
 
 import math
@@ -53,16 +53,22 @@ if __name__ == '__main__':
 	if (not addresses):
 		sys.exit(1)
 	address_ind = 0
-	
-    # Connect to peer device.
-        ble.connect(addresses[address_ind])
     
+    if (len(addresses) == 1):
+        cycle = 0
+        ble.connect(addresses[0])
+    else:
+        cycle = 1
+	
 	# Endless loop:
 	while (True):
+		# Connect to peer device.
+        if (cycle == 1):
+            ble.connect(addresses[address_ind])
 		
 		# Make the crownstone sample the current, give it some time to sample
 		ble.writeCharacteristic(CHAR_SAMPLE_POWER, [3])
-        time.sleep(0.5)
+		time.sleep(0.5)
 		
 		# Read the power curve
 		curveArr8 = ble.readCharacteristic(CHAR_READ_POWER_CURVE)
@@ -71,7 +77,7 @@ if __name__ == '__main__':
 			print curveArr8
 			
 			f = open(options.data_file, 'a')
-			f.write('%f %s %s' % (time.time(), addresses[address_ind], uuid))
+			f.write('%f %s %s' % (time.time(), addresses[address_ind], CHAR_READ_POWER_CURVE))
 			
 			# Layout of the data:
 			# type                            description
@@ -192,4 +198,11 @@ if __name__ == '__main__':
 			f.write('\n')
 			f.close()
 		
-		address_ind = (address_ind+1) % len(addresses)
+        if (cycle == 1):
+            # wait a second to be able to receive the disconnect event from peer device.
+            time.sleep(1)
+            
+            # Disconnect from peer device if not done already and clean up.
+            ble.disconnect()
+            address_ind = (address_ind+1) % len(addresses)
+
