@@ -70,7 +70,7 @@ if __name__ == '__main__':
 			print curveArr8
 			
 			f = open(options.data_file, 'a')
-			f.write('%f %s %s' % (time.time(), addresses[address_ind], uuid))
+			f.write('%f %s %s' % (time.time(), addresses[address_ind], CHAR_READ_POWER_CURVE))
 			
 			# Layout of the data:
 			# type                            description
