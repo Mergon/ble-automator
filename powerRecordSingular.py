@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-__author__ = 'Bart van Vliet'
+__author__ = 'Merijn van Tooren'
 
 
 import math
