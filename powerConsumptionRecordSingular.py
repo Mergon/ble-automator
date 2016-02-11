@@ -71,9 +71,11 @@ if __name__ == '__main__':
 		time.sleep(0.5)
 		
 		# Read the power consumption
-		power = ble.readCharacteristic(CHAR_READ_POWER_CONSUMPTION)
+		powerRaw = ble.readCharacteristic(CHAR_READ_POWER_CONSUMPTION)
 		
-		if (power):
+		if (powerRaw):
+			power = Conversion.uint8_array_to_uint16(powerRaw[0:3])
+			
 			if (options.verbose):
 				print power
 				
