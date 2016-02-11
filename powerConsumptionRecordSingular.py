@@ -77,7 +77,7 @@ if __name__ == '__main__':
 		if (powerRaw):
 			power = Conversion.uint8_array_to_uint16(powerRaw[0:3])
 			timeStamp = time.time()
-			entry = 'Entry ' + timeStamp + ' ' + power
+			entry = 'Entry ' + str(timeStamp) + ' ' + str(power)
 			
 			if (options.verbose):
 				print entry
