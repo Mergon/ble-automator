@@ -75,9 +75,11 @@ if __name__ == '__main__':
 		
 		if (powerRaw):
 			power = Conversion.uint8_array_to_uint16(powerRaw[0:3])
+			time = gmtime()
+			entry = 'Entry ' + time + ' ' + power
 			
 			if (options.verbose):
-				print power
+				print entry
 				
 			f = open(options.data_file, 'a')
 			f.write('%i' % (power))
