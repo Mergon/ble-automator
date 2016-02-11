@@ -80,5 +80,5 @@ if __name__ == '__main__':
 				print power
 				
 			f = open(options.data_file, 'a')
-			f.write(' %i' % (power))
+			f.write('%i' % (power))
 			f.write('\n')
