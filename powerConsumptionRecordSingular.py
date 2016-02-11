@@ -74,7 +74,7 @@ if __name__ == '__main__':
 		power = ble.readCharacteristic(CHAR_READ_POWER_CONSUMPTION)
 		
 		if (power):
-			if (verbose):
+			if (options.verbose):
 				print power
 				
 			f = open(options.data_file, 'a')
