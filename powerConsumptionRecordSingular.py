@@ -3,6 +3,7 @@
 __author__ = 'Merijn van Tooren'
 
 
+import time
 import math
 from bleAutomator2 import *
 import ConfigUtils
