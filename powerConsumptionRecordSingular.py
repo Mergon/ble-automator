@@ -69,15 +69,15 @@ if __name__ == '__main__':
 		
 		# Make the crownstone sample the current, give it some time to sample
 		ble.writeCharacteristic(CHAR_SAMPLE_POWER, [3])
-		time.sleep(0.75)
+		time.sleep(1.00)
 		
 		# Read the power consumption
 		powerRaw = ble.readCharacteristic(CHAR_READ_POWER_CONSUMPTION)
 		
 		if (powerRaw):
 			power = Conversion.uint8_array_to_uint16(powerRaw[0:3])
-			time = gmtime()
-			entry = 'Entry ' + time + ' ' + power
+			timeStamp = time.time()
+			entry = 'Entry ' + timeStamp + ' ' + power
 			
 			if (options.verbose):
 				print entry
