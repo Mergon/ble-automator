@@ -3,6 +3,7 @@
 __author__ = 'Merijn van Tooren'
 
 
+import time
 import math
 from bleAutomator2 import *
 import ConfigUtils
@@ -75,6 +76,10 @@ if __name__ == '__main__':
 		if (curveArr8):
 			
 			#print curveArr8
+			if (options.verbose):
+				timeStamp = time.time()
+				print str(timeStamp)
+				
 			
 			f = open(options.data_file, 'a')
 			f.write('%f %s %s' % (time.time(), addresses[address_ind], CHAR_READ_POWER_CURVE))
